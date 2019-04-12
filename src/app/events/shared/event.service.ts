@@ -7,4 +7,11 @@ export class EventService {
   getEvents() {
     return events;
   }
+  getEvent(id: number) {
+    for (const event of events) {
+      if (event.id === id) {
+        return event;
+      }
+    }
+  }
 }
