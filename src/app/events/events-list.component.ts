@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { events } from './event-data';
+import { Component, OnInit } from '@angular/core';
+import { EventService } from './shared/event.service';
+// import { events } from './event-data';
 
 @Component({
   selector: 'events-list',
@@ -15,6 +16,13 @@ import { events } from './event-data';
     </div>
   `,
 })
-export class EventsListComponent {
-  events = events;
+export class EventsListComponent implements OnInit {
+  events: any[];
+  constructor(private eventService: EventService) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.events = this.eventService.getEvents();
+  }
 }

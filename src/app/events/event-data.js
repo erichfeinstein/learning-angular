@@ -6,11 +6,11 @@ export const events = [
     time: '10:00 am',
     price: 599.99,
     imageUrl: '/assets/images/angularconnect-shield.png',
-    location: {
-      address: '1057 DT',
-      city: 'London',
-      country: 'England',
-    },
+    // location: {
+    //   address: '1057 DT',
+    //   city: 'London',
+    //   country: 'England',
+    // },
     sessions: [
       {
         id: 1,
