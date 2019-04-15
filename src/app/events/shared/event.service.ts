@@ -11,7 +11,7 @@ export class EventService {
     setTimeout(() => {
       subject.next(events);
       subject.complete();
-    }, 300);
+    }, 100);
     return subject;
   }
   getEvent(id: number): IEvent {
@@ -25,6 +25,11 @@ export class EventService {
     event.id = 999;
     event.session = [];
     events.push(event);
+  }
+
+  updateEvent(event) {
+    const index = events.findIndex(x => (x.id = event.id));
+    events[index] = event;
   }
 }
 
