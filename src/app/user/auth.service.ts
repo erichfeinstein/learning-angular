@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './user.model';
-import { currentId } from 'async_hooks';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +11,11 @@ export class AuthService {
       firstName: 'John',
       lastName: 'BonJovi',
     };
+  }
+
+  updateCurrentUser(firstName: string, lastName: string) {
+    this.currentUser.firstName = firstName;
+    this.currentUser.lastName = lastName;
   }
 
   isAuthenticated() {
