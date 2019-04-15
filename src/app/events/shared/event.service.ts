@@ -21,6 +21,11 @@ export class EventService {
       }
     }
   }
+  saveEvent(event) {
+    event.id = 999;
+    event.session = [];
+    events.push(event);
+  }
 }
 
 const events: IEvent[] = [
