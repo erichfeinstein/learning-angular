@@ -7,6 +7,7 @@ import {
   EventDetailsComponent,
   CreateEventComponent,
   CreateSessionComponent,
+  DurationPipe,
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
@@ -21,6 +22,7 @@ import { EventListResolver } from './events/event-list-resolver.service';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionListComponent } from './events/event-details/session-list.component';
+import { CollapsibleWellComponenet } from './common/collapsible-well.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SessionListComponent } from './events/event-details/session-list.compon
     CreateEventComponent,
     CreateSessionComponent,
     SessionListComponent,
+    CollapsibleWellComponenet,
     Error404Component,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,
