@@ -45,6 +45,16 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.currentUser = undefined;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.post('/api/logout', {}, options);
+  }
+
   isAuthenticated() {
     return !!this.currentUser;
   }
