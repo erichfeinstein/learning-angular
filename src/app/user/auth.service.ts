@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './user.model';
-import { HttpClient } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
