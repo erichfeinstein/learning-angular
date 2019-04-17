@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { IUser } from './user.model';
+import { HttpClient } from '@angular/common';
 
 @Injectable()
 export class AuthService {
+  constructor(private http: HttpClient) {}
   currentUser: IUser;
   loginUser(userName: string, password: string) {
+    // this.http.post('/api/login');
+
     this.currentUser = {
       id: 1,
-      userName: userName,
+      userName,
       firstName: 'John',
       lastName: 'BonJovi',
     };

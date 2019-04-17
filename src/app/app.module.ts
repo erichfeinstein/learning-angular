@@ -9,6 +9,8 @@ import {
   CreateEventComponent,
   CreateSessionComponent,
   DurationPipe,
+  UpvoteComponent,
+  VoterService,
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
@@ -37,6 +39,7 @@ import { EventResolver } from './events/event-resolver.service';
     SessionListComponent,
     CollapsibleWellComponenet,
     Error404Component,
+    UpvoteComponent,
     DurationPipe,
   ],
   imports: [
@@ -52,7 +55,7 @@ import { EventResolver } from './events/event-resolver.service';
     EventListResolver,
     EventResolver,
     AuthService,
-
+    VoterService,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
   ],
   bootstrap: [EventsAppComponent],
