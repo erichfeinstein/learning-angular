@@ -60,4 +60,8 @@
     >
     <button type="button" class="btn btn-default">Cancel</button>
   </form>
+  <br />
+  <div *ngIf="loginInvalid" class="alert alert-danger">
+    BAD LOGIN CREDENTIALS
+  </div>
 </div>
