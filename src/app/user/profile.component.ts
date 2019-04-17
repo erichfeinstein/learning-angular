@@ -47,11 +47,11 @@ export class ProfileComponent implements OnInit {
   }
   saveProfile(formValues) {
     if (this.profileForm.valid) {
-      this.authService.updateCurrentUser(
-        formValues.firstName,
-        formValues.lastName
-      );
-      this.router.navigate(['events']);
+      this.authService
+        .updateCurrentUser(formValues.firstName, formValues.lastName)
+        .subscribe(() => {
+          this.router.navigate(['events']);
+        });
     }
   }
 }
