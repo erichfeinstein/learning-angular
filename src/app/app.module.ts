@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
@@ -17,12 +18,12 @@ import { ToastrService } from './common/toastr.service';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { EventListResolver } from './events/event-list-resolver.service';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { CollapsibleWellComponenet } from './common/collapsible-well.component';
+import { EventResolver } from './events/event-resolver.service';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,13 @@ import { CollapsibleWellComponenet } from './common/collapsible-well.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [
     EventService,
     ToastrService,
-    EventRouteActivator,
     EventListResolver,
+    EventResolver,
     AuthService,
 
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },

@@ -1,38 +1,50 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 import { IEvent } from './event.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
-  //   constructor(private http: Http) {}
+  constructor(private http: HttpClient) {}
   getEvents(): Observable<IEvent[]> {
-    const subject = new Subject<IEvent[]>();
-    setTimeout(() => {
-      subject.next(events);
-      subject.complete();
-    }, 100);
-    return subject;
+    return this.http
+      .get<IEvent[]>('/api/events')
+      .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
   }
-  getEvent(id: number): IEvent {
-    for (const event of events) {
-      if (event.id === id) {
-        return event;
-      }
-    }
+  getEvent(id: number): Observable<IEvent> {
+    return this.http
+      .get<IEvent>('/api/events/' + id)
+      .pipe(catchError(this.handleError<IEvent>('getEvent')));
   }
-  saveEvent(event) {
-    event.id = 999;
-    event.session = [];
-    events.push(event);
+  saveEvent(event): Observable<IEvent> {
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .post<IEvent>('/api/events', event, options)
+      .pipe(catchError(this.handleError<IEvent>('saveEvent')));
   }
 
-  updateEvent(event) {
-    const index = events.findIndex(x => (x.id = event.id));
-    events[index] = event;
+  updateEvent(event, id): Observable<IEvent> {
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
+    return this.http
+      .put<IEvent>('/api/events/' + id, event, options)
+      .pipe(catchError(this.handleError<IEvent>('updateEvent')));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 }
 
+/*
 const events: IEvent[] = [
   {
     id: 1,
@@ -343,3 +355,4 @@ const events: IEvent[] = [
     ],
   },
 ];
+*/

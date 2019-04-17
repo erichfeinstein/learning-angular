@@ -11,7 +11,6 @@ export class CreateEventComponent implements OnInit {
   constructor(private router: Router, private eventService: EventService) {}
 
   saveEvent(formValues) {
-    console.log(formValues);
     const event = {
       name: formValues.name,
       date: new Date(formValues.date),
@@ -25,9 +24,10 @@ export class CreateEventComponent implements OnInit {
         country: formValues.country,
       },
     };
-    this.eventService.saveEvent(event);
-    this.isDirty = false;
-    this.router.navigate(['/events']);
+    this.eventService.saveEvent(event).subscribe(() => {
+      this.isDirty = false;
+      this.router.navigate(['/events']);
+    });
   }
 
   ngOnInit(): void {
